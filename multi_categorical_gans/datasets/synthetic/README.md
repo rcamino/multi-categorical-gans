@@ -14,7 +14,7 @@ mkdir -p data/uscensus/mix_big
 The basic arguments for the script that generates synthetic datasets are:
 
 ```bash
-python multi_categorical_gans/cases/synthetic/generate.py
+python multi_categorical_gans/datasets/synthetic/generate.py
 usage: generate.py [-h] [--min_variable_size MIN_VARIABLE_SIZE]
                    [--max_variable_size MAX_VARIABLE_SIZE] [--seed SEED]
                    [--class_distribution CLASS_DISTRIBUTION]
@@ -40,37 +40,41 @@ During the generation of a sample, the categorical distribution is selected depe
 To generate a dataset similar to the one called `FIXED 2` in the paper:
 
 ```bash
-python multi_categorical_gans/cases/synthetic/generate.py -min_variable_size=2 --max_variable_size=2 10000 9 \
+python multi_categorical_gans/datasets/synthetic/generate.py 10000 9 \
     data/synthetic/fixed_2/metadata.json \
-    data/synthetic/fixed_2/synthetic.features.npz
+    data/synthetic/fixed_2/synthetic.features.npz \
+    -min_variable_size=2 --max_variable_size=2
 ```
 
 To generate a dataset similar to the one called `FIXED 10` in the paper:
 
 ```bash
-python multi_categorical_gans/cases/synthetic/generate.py --min_variable_size=10 --max_variable_size=10 10000 9 \
+python multi_categorical_gans/datasets/synthetic/generate.py 10000 9 \
     data/synthetic/fixed_10/metadata.json \
-    data/synthetic/fixed_10/synthetic.features.npz
+    data/synthetic/fixed_10/synthetic.features.npz \
+    --min_variable_size=10 --max_variable_size=10
 ```
 
 To generate a dataset similar to the one called `MIX SMALL` in the paper:
 
 ```bash
-python multi_categorical_gans/cases/synthetic/generate.py --min_variable_size=2 --max_variable_size=10 10000 9 \
+python multi_categorical_gans/datasets/synthetic/generate.py 10000 9 \
     data/synthetic/fixed_2/metadata.json \
-    data/synthetic/fixed_2/synthetic.features.npz
+    data/synthetic/fixed_2/synthetic.features.npz \
+    --min_variable_size=2 --max_variable_size=10
 ```
 
 To generate a dataset similar to the one called `MIX BIG` in the paper:
 
 ```bash
-python multi_categorical_gans/cases/synthetic/generate.py --min_variable_size=2 --max_variable_size=10 10000 99 \
+python multi_categorical_gans/datasets/synthetic/generate.py 10000 99 \
     data/synthetic/fixed_2/metadata.json \
-    data/synthetic/fixed_2/synthetic.features.npz
+    data/synthetic/fixed_2/synthetic.features.npz \
+    --min_variable_size=2 --max_variable_size=10
 ```
 
 For more information about the transformation run:
 
 ```bash
-python multi_categorical_gans/cases/synthetic/generate.py -h
+python multi_categorical_gans/datasets/synthetic/generate.py -h
 ```

@@ -20,7 +20,7 @@ wget https://archive.ics.uci.edu/ml/machine-learning-databases/census1990-mld/US
 To transform the csv data one-hot-encoding each categorical variable we run:
 
 ```bash
-python multi_categorical_gans/cases/uscensus/transform.py \
+python multi_categorical_gans/datasets/uscensus/transform.py \
     data/uscensus/USCensus1990.data.txt \
     data/uscensus/USCensus1990.features.npz \
     data/uscensus/metadata.json
@@ -29,5 +29,5 @@ python multi_categorical_gans/cases/uscensus/transform.py \
 For more information about the transformation run:
 
 ```bash
-python multi_categorical_gans/cases/uscensus/transform.py -h
+python multi_categorical_gans/datasets/uscensus/transform.py -h
 ```
