@@ -43,7 +43,7 @@ To generate a dataset similar to the one called `FIXED 2` in the paper:
 python multi_categorical_gans/datasets/synthetic/generate.py 10000 9 \
     data/synthetic/fixed_2/metadata.json \
     data/synthetic/fixed_2/synthetic.features.npz \
-    -min_variable_size=2 --max_variable_size=2
+    --min_variable_size=2 --max_variable_size=2
 ```
 
 To generate a dataset similar to the one called `FIXED 10` in the paper:
