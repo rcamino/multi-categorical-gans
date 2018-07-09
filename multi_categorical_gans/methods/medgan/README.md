@@ -1,5 +1,7 @@
 # MedGAN and MC-MedGAN
 
+Based on the code from [mp2893/medgan](https://github.com/mp2893/medgan).
+
 # MedGAN
 
 An example using the `MIX SMALL` dataset:

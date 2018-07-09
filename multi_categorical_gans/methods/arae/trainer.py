@@ -139,8 +139,7 @@ def train(autoencoder,
                 # first train the discriminator only with real data
                 real_features = Variable(torch.from_numpy(batch))
                 real_features = to_cuda_if_available(real_features)
-                real_code = autoencoder.encode(real_features,
-                                               normalize_code=normalize_code)
+                real_code = autoencoder.encode(real_features, normalize_code=normalize_code)
                 real_code = add_noise_to_code(real_code, ae_noise_radius)
                 if regularization_penalty > 0:
                     real_code.register_hook(regularize_ae_grad)

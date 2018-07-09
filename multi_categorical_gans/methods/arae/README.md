@@ -1,5 +1,7 @@
 # ARAE and MC-ARAE
 
+Based on the code from [jakezhaojb/ARAE](https://github.com/jakezhaojb/ARAE).
+
 # ARAE
 
 An example using the `MIX SMALL` dataset:
