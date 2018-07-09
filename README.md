@@ -21,6 +21,6 @@ pip install -r requirements.txt
   - [US Census 1990](multi_categorical_gans/datasets/uscensus/)
 - Methods
   - [ARAE and MC-ARAE](multi_categorical_gans/methods/arae/)
-  - [MedGAN and MC-MedGAN](multi_categorical_gmethods/medgan/)
+  - [MedGAN and MC-MedGAN](multi_categorical_gans/methods/medgan/)
   - [MC-Gumbel](multi_categorical_gans/methods/mc_gumbel/)
   - [MC-WGAN-GP](multi_categorical_gans/methods/mc_wgan_gp/)
