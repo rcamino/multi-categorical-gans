@@ -17,10 +17,10 @@ pip install -r requirements.txt
 
 ## Contents
 - Datasets
-  - [Synthetic data generation](datasets/synthetic/)
-  - [US Census 1990](datasets/uscensus/)
+  - [Synthetic data generation](multi_categorical_gans/datasets/synthetic/)
+  - [US Census 1990](multi_categorical_gans/datasets/uscensus/)
 - Methods
-  - [ARAE and MC-ARAE](arae/)
-  - [MedGAN and MC-MedGAN](medgan/)
-  - [MC-Gumbel](mc_gumbel/)
-  - [MC-WGAN-GP](mc_wgan_gp/)
+  - [ARAE and MC-ARAE](multi_categorical_gans/methods/arae/)
+  - [MedGAN and MC-MedGAN](multi_categorical_gmethods/medgan/)
+  - [MC-Gumbel](multi_categorical_gans/methods/mc_gumbel/)
+  - [MC-WGAN-GP](multi_categorical_gans/methods/mc_wgan_gp/)
