@@ -107,11 +107,7 @@ def train(generator,
                 fake_loss.backward()
 
                 # this is the magic from WGAN-GP
-                gradient_penalty = calculate_gradient_penalty(discriminator,
-                                                              penalty,
-                                                              real_features,
-                                                              fake_features)
-
+                gradient_penalty = calculate_gradient_penalty(discriminator, penalty, real_features, fake_features)
                 gradient_penalty.backward()
 
                 # finally update the discriminator weights

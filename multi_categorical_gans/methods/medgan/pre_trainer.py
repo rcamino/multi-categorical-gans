@@ -69,10 +69,7 @@ def pre_train_epoch(autoencoder, data, batch_size, optim=None, variable_sizes=No
         batch = Variable(torch.from_numpy(batch))
         batch = to_cuda_if_available(batch)
 
-        _, batch_reconstructed = autoencoder(batch,
-                                             training=training,
-                                             temperature=temperature,
-                                             normalize_code=False)
+        _, batch_reconstructed = autoencoder(batch, training=training, temperature=temperature, normalize_code=False)
 
         loss = categorical_variable_loss(batch_reconstructed, batch, variable_sizes)
         loss.backward()

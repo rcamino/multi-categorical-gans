@@ -106,15 +106,12 @@ def train(autoencoder,
 
                 batch_original = Variable(torch.from_numpy(batch))
                 batch_original = to_cuda_if_available(batch_original)
-                batch_code = autoencoder.encode(batch_original,
-                                                normalize_code=normalize_code)
+                batch_code = autoencoder.encode(batch_original, normalize_code=normalize_code)
                 batch_code = add_noise_to_code(batch_code, ae_noise_radius)
                 if regularization_penalty > 0:
                     batch_code.register_hook(update_last_ae_grad_norm)
 
-                batch_reconstructed = autoencoder.decode(batch_code,
-                                                         training=True,
-                                                         temperature=temperature)
+                batch_reconstructed = autoencoder.decode(batch_code, training=True, temperature=temperature)
 
                 ae_loss = categorical_variable_loss(batch_reconstructed, batch_original, variable_sizes)
                 ae_loss.backward()

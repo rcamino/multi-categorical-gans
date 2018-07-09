@@ -31,12 +31,9 @@ class Generator(nn.Module):
             batch_norm.train(mode=mode)
 
     def forward(self, noise):
-        """
-        This sums are called "shortcut connections"
-        """
         outputs = noise
 
         for module in self.modules:
             # Cannot write "outputs += module(outputs)" because it is an inplace operation (no differentiable)
-            outputs = module(outputs) + outputs
+            outputs = module(outputs) + outputs  # shortcut connection
         return outputs

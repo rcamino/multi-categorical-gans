@@ -31,11 +31,7 @@ def sample(autoencoder, generator, num_samples, num_features, batch_size=100, no
             noise = Variable(torch.FloatTensor(batch_size, noise_size).normal_())
             noise = to_cuda_if_available(noise)
             batch_code = generator(noise)
-
-            batch_samples = autoencoder.decode(batch_code,
-                                               training=False,
-                                               temperature=temperature)
-
+            batch_samples = autoencoder.decode(batch_code, training=False, temperature=temperature)
         batch_samples = to_cpu_if_available(batch_samples)
         batch_samples = batch_samples.data.numpy()
 

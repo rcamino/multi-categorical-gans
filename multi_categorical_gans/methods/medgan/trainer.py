@@ -98,9 +98,7 @@ def train(autoencoder,
                 noise = Variable(torch.FloatTensor(len(batch), code_size).normal_())
                 noise = to_cuda_if_available(noise)
                 fake_code = generator(noise)
-                fake_features = autoencoder.decode(fake_code,
-                                                   training=True,
-                                                   temperature=temperature)
+                fake_features = autoencoder.decode(fake_code, training=True, temperature=temperature)
                 fake_features = fake_features.detach()  # do not propagate to the generator
                 fake_pred = discriminator(fake_features)
                 fake_loss = criterion(fake_pred, label_zeros)
@@ -127,9 +125,7 @@ def train(autoencoder,
                 noise = Variable(torch.FloatTensor(len(batch), code_size).normal_())
                 noise = to_cuda_if_available(noise)
                 gen_code = generator(noise)
-                gen_features = autoencoder.decode(gen_code,
-                                                  training=True,
-                                                  temperature=temperature)
+                gen_features = autoencoder.decode(gen_code, training=True, temperature=temperature)
                 gen_pred = discriminator(gen_features)
 
                 smooth_label_ones = Variable(torch.FloatTensor(len(batch)).uniform_(0.9, 1))
@@ -167,9 +163,7 @@ def train(autoencoder,
                 noise = Variable(torch.FloatTensor(len(batch), code_size).normal_())
                 noise = to_cuda_if_available(noise)
                 fake_code = generator(noise)
-                fake_features = autoencoder.decode(fake_code,
-                                                   training=False,
-                                                   temperature=temperature)
+                fake_features = autoencoder.decode(fake_code, training=False, temperature=temperature)
                 fake_pred = discriminator(fake_features)
             fake_pred = to_cpu_if_available(fake_pred)
             correct += (fake_pred.data.numpy().ravel() < .5).sum()
