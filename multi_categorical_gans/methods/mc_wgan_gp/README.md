@@ -25,7 +25,7 @@ python multi_categorical_gans/methods/mc_wgan_gp/trainer.py \
     --num_generator_steps=1 \
     --seed=123 \
     --penalty=10.0 \
-    data/synthetic/mix_small/synthetic-train.features.npz \
+    data/synthetic/mix_small/synthetic.features.npz \
     data/synthetic/mix_small/metadata.json \
     models/mc-wgan-gp/synthetic/mix_small/generator.torch \
     models/mc-wgan-gp/synthetic/mix_small/discriminator.torch \

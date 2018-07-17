@@ -5,10 +5,10 @@ We generated several synthetic datasets for our experiments.
 We decided to save the data in `data/synthetic`:
 
 ```bash
-mkdir -p data/uscensus/fixed_2
-mkdir -p data/uscensus/fixed_10
-mkdir -p data/uscensus/mix_small
-mkdir -p data/uscensus/mix_big
+mkdir -p data/synthetic/fixed_2
+mkdir -p data/synthetic/fixed_10
+mkdir -p data/synthetic/mix_small
+mkdir -p data/synthetic/mix_big
 ```
 
 The basic arguments for the script that generates synthetic datasets are:
@@ -59,8 +59,8 @@ To generate a dataset similar to the one called `MIX SMALL` in the paper:
 
 ```bash
 python multi_categorical_gans/datasets/synthetic/generate.py 10000 9 \
-    data/synthetic/fixed_2/metadata.json \
-    data/synthetic/fixed_2/synthetic.features.npz \
+    data/synthetic/mix_small/metadata.json \
+    data/synthetic/mix_small/synthetic.features.npz \
     --min_variable_size=2 --max_variable_size=10
 ```
 
@@ -68,8 +68,8 @@ To generate a dataset similar to the one called `MIX BIG` in the paper:
 
 ```bash
 python multi_categorical_gans/datasets/synthetic/generate.py 10000 99 \
-    data/synthetic/fixed_2/metadata.json \
-    data/synthetic/fixed_2/synthetic.features.npz \
+    data/synthetic/mix_big/metadata.json \
+    data/synthetic/mix_big/synthetic.features.npz \
     --min_variable_size=2 --max_variable_size=10
 ```
 
