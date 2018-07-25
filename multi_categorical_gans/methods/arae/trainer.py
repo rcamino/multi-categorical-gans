@@ -54,8 +54,7 @@ def train(autoencoder,
           ae_noise_anneal=0.995,
           normalize_code=True,
           variable_sizes=None,
-          temperature=None,
-          regularization_penalty=0.01
+          temperature=None
           ):
     autoencoder, generator, discriminator = to_cuda_if_available(autoencoder, generator, discriminator)
 
@@ -80,19 +79,6 @@ def train(autoencoder,
         more_batches = True
         train_data_iterator = train_data.batch_iterator(batch_size)
 
-        last_ae_grad_norm = None
-
-        def update_last_ae_grad_norm(grad):
-            global last_ae_grad_norm
-            norm = torch.norm(grad, 2, 1)
-            last_ae_grad_norm = norm.detach().data.mean()
-            return grad
-
-        def regularize_ae_grad(grad):
-            global last_ae_grad_norm
-            gan_norm = torch.norm(grad, 2, 1).detach().data.mean()
-            return (grad * last_ae_grad_norm / gan_norm) * (-regularization_penalty)
-
         while more_batches:
             # train autoencoder
             for _ in range(num_ae_steps):
@@ -108,8 +94,6 @@ def train(autoencoder,
                 batch_original = to_cuda_if_available(batch_original)
                 batch_code = autoencoder.encode(batch_original, normalize_code=normalize_code)
                 batch_code = add_noise_to_code(batch_code, ae_noise_radius)
-                if regularization_penalty > 0:
-                    batch_code.register_hook(update_last_ae_grad_norm)
 
                 batch_reconstructed = autoencoder.decode(batch_code, training=True, temperature=temperature)
 
@@ -141,8 +125,6 @@ def train(autoencoder,
                 real_features = to_cuda_if_available(real_features)
                 real_code = autoencoder.encode(real_features, normalize_code=normalize_code)
                 real_code = add_noise_to_code(real_code, ae_noise_radius)
-                if regularization_penalty > 0:
-                    real_code.register_hook(regularize_ae_grad)
                 real_pred = discriminator(real_code)
                 real_loss = - real_pred.mean(0).view(1)
                 real_loss.backward()
