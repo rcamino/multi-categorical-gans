@@ -14,6 +14,7 @@ from multi_categorical_gans.datasets.formats import data_formats, loaders
 from multi_categorical_gans.methods.general.autoencoder import AutoEncoder
 from multi_categorical_gans.methods.general.generator import Generator
 from multi_categorical_gans.methods.general.discriminator import Discriminator
+from multi_categorical_gans.methods.general.wgan_gp import calculate_gradient_penalty
 
 from multi_categorical_gans.utils.categorical import load_variable_sizes_from_metadata, categorical_variable_loss
 from multi_categorical_gans.utils.commandline import DelayedKeyboardInterrupt, parse_int_list
@@ -54,7 +55,8 @@ def train(autoencoder,
           ae_noise_anneal=0.995,
           normalize_code=True,
           variable_sizes=None,
-          temperature=None
+          temperature=None,
+          penalty=0.1
           ):
     autoencoder, generator, discriminator = to_cuda_if_available(autoencoder, generator, discriminator)
 
@@ -138,14 +140,19 @@ def train(autoencoder,
                 fake_loss = fake_pred.mean(0).view(1)
                 fake_loss.backward()
 
+                # this is the magic from WGAN-GP
+                gradient_penalty = calculate_gradient_penalty(discriminator, penalty, real_code, fake_code)
+                gradient_penalty.backward()
+
                 optim_ae.step()
                 optim_disc.step()
 
-                disc_loss = real_loss + fake_loss
+                disc_loss = real_loss + fake_loss + gradient_penalty
                 disc_loss = to_cpu_if_available(disc_loss)
                 disc_losses.append(disc_loss.data.numpy())
 
                 del disc_loss
+                del gradient_penalty
                 del fake_loss
                 del real_loss
 
@@ -349,6 +356,13 @@ def main():
         help="Gumbel-Softmax temperature."
     )
 
+    options_parser.add_argument(
+        "--penalty",
+        type=float,
+        default=0.1,
+        help="WGAN-GP gradient penalty lambda."
+    )
+
     options_parser.add_argument("--seed", type=int, help="Random number generator seed.", default=42)
 
     options = options_parser.parse_args()
@@ -421,7 +435,8 @@ def main():
         ae_noise_radius=options.autoencoder_noise_radius,
         ae_noise_anneal=options.autoencoder_noise_anneal,
         variable_sizes=variable_sizes,
-        temperature=temperature
+        temperature=temperature,
+        penalty=options.penalty
     )
 
 
