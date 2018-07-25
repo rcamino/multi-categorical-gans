@@ -16,9 +16,10 @@ class Generator(nn.Module):
         previous_layer_size = noise_size
         hidden_layers = []
 
-        for layer_size in hidden_sizes:
+        for layer_number, layer_size in enumerate(hidden_sizes):
             hidden_layers.append(nn.Linear(previous_layer_size, layer_size))
-            hidden_layers.append(nn.BatchNorm1d(layer_size, momentum=(1 - bn_decay)))
+            if layer_number > 0 and bn_decay > 0:
+                hidden_layers.append(nn.BatchNorm1d(layer_size, momentum=(1 - bn_decay)))
             hidden_layers.append(hidden_activation)
             previous_layer_size = layer_size
 
