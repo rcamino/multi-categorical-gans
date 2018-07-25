@@ -27,3 +27,7 @@ pip install -r requirements.txt
   - [MC-Gumbel](multi_categorical_gans/methods/mc_gumbel/)
   - [MC-WGAN-GP](multi_categorical_gans/methods/mc_wgan_gp/)
 - [Metrics](multi_categorical_gans/metrics)
+
+## Changelog
+
+- 2018-07-25: now we use WGAN-GP for ARAE following the author updates.
