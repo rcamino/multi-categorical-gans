@@ -50,7 +50,6 @@ def train(autoencoder,
           noise_size=128,
           l2_regularization=0.001,
           learning_rate=0.001,
-          discriminator_clamp=0.01,
           ae_noise_radius=0.2,
           ae_noise_anneal=0.995,
           normalize_code=True,
@@ -109,10 +108,6 @@ def train(autoencoder,
 
             # train discriminator
             for _ in range(num_disc_steps):
-                # clamp parameters to a cube
-                for discriminator_parameter in discriminator.parameters():
-                    discriminator_parameter.data.clamp_(-discriminator_clamp, discriminator_clamp)
-
                 try:
                     batch = next(train_data_iterator)
                 except StopIteration:
@@ -329,13 +324,6 @@ def main():
     )
 
     options_parser.add_argument(
-        "--discriminator_clamp",
-        type=float,
-        default=0.01,
-        help="WGAN clamp."
-    )
-
-    options_parser.add_argument(
         "--autoencoder_noise_radius",
         type=float,
         default=0,
@@ -431,7 +419,6 @@ def main():
         noise_size=options.noise_size,
         l2_regularization=options.l2_regularization,
         learning_rate=options.learning_rate,
-        discriminator_clamp=options.discriminator_clamp,
         ae_noise_radius=options.autoencoder_noise_radius,
         ae_noise_anneal=options.autoencoder_noise_anneal,
         variable_sizes=variable_sizes,
