@@ -83,10 +83,6 @@ def pre_train_epoch(autoencoder, data, batch_size, optim=None, variable_sizes=No
     return losses
 
 
-def losses_by_class_to_string(losses_by_class):
-    return ", ".join(["{:.5f}".format(np.mean(losses)) for losses in losses_by_class])
-
-
 def main():
     options_parser = argparse.ArgumentParser(description="Pre-train MedGAN or MC-MedGAN. "
                                                          + "Define 'metadata' and 'temperature' to use MC-MedGAN.")
