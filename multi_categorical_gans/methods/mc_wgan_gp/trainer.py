@@ -276,7 +276,7 @@ def main():
     discriminator = Discriminator(
         features.shape[1],
         hidden_sizes=parse_int_list(options.discriminator_hidden_sizes),
-        bn_decay=options.bn_decay,
+        bn_decay=0,  # no batch normalization for the critic
         critic=True
     )
 
