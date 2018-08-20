@@ -10,8 +10,8 @@ class Logger(object):
 
     start_time = None
 
-    def __init__(self, output_path):
-        if os.path.exists(output_path) and os.path.getsize(output_path) > 0:
+    def __init__(self, output_path, append=False):
+        if append and os.path.exists(output_path) and os.path.getsize(output_path) > 0:
             self.output_file = open(output_path, "a")
             self.output_writer = csv.DictWriter(self.output_file, fieldnames=self.CSV_COLUMNS)
         else:

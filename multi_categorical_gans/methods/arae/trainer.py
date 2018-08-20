@@ -63,7 +63,7 @@ def train(autoencoder,
     optim_gen = Adam(generator.parameters(), weight_decay=l2_regularization, lr=learning_rate)
     optim_disc = Adam(discriminator.parameters(), weight_decay=l2_regularization, lr=learning_rate)
 
-    logger = Logger(output_loss_path)
+    logger = Logger(output_loss_path, append=start_epoch > 0)
 
     for epoch_index in range(start_epoch, num_epochs):
         logger.start_timer()

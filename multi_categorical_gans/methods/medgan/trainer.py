@@ -51,7 +51,7 @@ def train(autoencoder,
 
     criterion = BCELoss()
 
-    logger = Logger(output_loss_path)
+    logger = Logger(output_loss_path, append=start_epoch > 0)
 
     for epoch_index in range(start_epoch, num_epochs):
         logger.start_timer()
