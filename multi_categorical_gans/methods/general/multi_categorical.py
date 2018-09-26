@@ -15,26 +15,9 @@ class MultiCategorical(nn.Module):
         self.output_layers = nn.ModuleList()
         self.output_activations = nn.ModuleList()
 
-        continuous_size = 0
         for i, variable_size in enumerate(variable_sizes):
-            # if it is a categorical variable
-            if variable_size > 1:
-                # first create the accumulated continuous layer
-                if continuous_size > 0:
-                    self.output_layers.append(nn.Linear(input_size, continuous_size))
-                    self.output_activations.append(ContinuousActivation())
-                    continuous_size = 0
-                # create the categorical layer
-                self.output_layers.append(nn.Linear(input_size, variable_size))
-                self.output_activations.append(CategoricalActivation())
-            # if not, accumulate continuous variables
-            else:
-                continuous_size += 1
-
-        # create the remaining accumulated continuous layer
-        if continuous_size > 0:
-            self.output_layers.append(nn.Linear(input_size, continuous_size))
-            self.output_activations.append(ContinuousActivation())
+            self.output_layers.append(nn.Linear(input_size, variable_size))
+            self.output_activations.append(CategoricalActivation())
 
     def forward(self, inputs, training=True, temperature=None, concat=True):
         outputs = []
@@ -64,12 +47,3 @@ class CategoricalActivation(nn.Module):
         # softmax evaluation
         else:
             return OneHotCategorical(logits=logits).sample()
-
-
-class ContinuousActivation(nn.Module):
-
-    def __init__(self):
-        super(ContinuousActivation, self).__init__()
-
-    def forward(self, logits, training=True, temperature=None):
-        return F.sigmoid(logits)
