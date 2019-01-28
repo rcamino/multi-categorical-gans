@@ -17,7 +17,7 @@ Example of how to split a dataset into 90% train and 10% test:
 ```bash
 python multi_categorical_gans/datasets/train_test_split.py \
     data/uscensus/USCensus1990.features.npz \
-    --percent 90 \
+    0.9 \
     data/uscensus/USCensus1990-train.features.npz \
     data/uscensus/USCensus1990-test.features.npz
 ```

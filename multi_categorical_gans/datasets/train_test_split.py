@@ -43,9 +43,17 @@ def main():
     features_saver = savers[options.features_format]
     features = features_loader(options.features, transform=False)
 
+    if 0 < options.train_size < 1:
+        test_size = 1 - options.train_size
+    elif options.train_size > 1:
+        test_size = len(features) - options.train_size
+    else:
+        raise Exception("Invalid train size.")
+
     if options.labels is None:
         train_features, test_features = train_test_split(features,
                                                          train_size=options.train_size,
+                                                         test_size=test_size,
                                                          shuffle=options.shuffle)
     else:
         labels_loader = loaders[options.labels_format]
@@ -55,6 +63,7 @@ def main():
         train_features, test_features, train_labels, test_labels = train_test_split(features,
                                                                                     labels,
                                                                                     train_size=options.train_size,
+                                                                                    test_size=test_size,
                                                                                     shuffle=options.shuffle)
 
     features_saver(options.train_features, train_features)
