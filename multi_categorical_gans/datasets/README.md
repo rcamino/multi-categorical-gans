@@ -12,7 +12,39 @@ functions to operate with both data formats in an abstract way.
 
 ## Train and test split
 
-Example of how to split a dataset into 90% train and 10% test:
+Examples of how to split a dataset into 90% train and 10% test:
+
+```bash
+python multi_categorical_gans/datasets/train_test_split.py \
+    data/synthetic/fixed_2/synthetic.features.npz \
+    0.9 \
+    data/synthetic/fixed_2/synthetic-train.features.npz \
+    data/synthetic/fixed_2/synthetic-test.features.npz
+```
+
+```bash
+python multi_categorical_gans/datasets/train_test_split.py \
+    data/synthetic/fixed_10/synthetic.features.npz \
+    0.9 \
+    data/synthetic/fixed_10/synthetic-train.features.npz \
+    data/synthetic/fixed_10/synthetic-test.features.npz
+```
+
+```bash
+python multi_categorical_gans/datasets/train_test_split.py \
+    data/synthetic/mix_small/synthetic.features.npz \
+    0.9 \
+    data/synthetic/mix_small/synthetic-train.features.npz \
+    data/synthetic/mix_small/synthetic-test.features.npz
+```
+
+```bash
+python multi_categorical_gans/datasets/train_test_split.py \
+    data/synthetic/mix_big/synthetic.features.npz \
+    0.9 \
+    data/synthetic/mix_big/synthetic-train.features.npz \
+    data/synthetic/mix_big/synthetic-test.features.npz
+```
 
 ```bash
 python multi_categorical_gans/datasets/train_test_split.py \
