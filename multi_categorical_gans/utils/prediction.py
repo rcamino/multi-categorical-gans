@@ -17,7 +17,7 @@ def prediction_score(train_X, train_y, test_X, test_y, metric, model):
     else:
         # create the model
         if model == "random_forest_classifier":
-            m = RandomForestClassifier()
+            m = RandomForestClassifier(n_estimators=10)
         elif model == "logistic_regression":
             m = LogisticRegression()
         else:
