@@ -4,12 +4,13 @@ Code for the paper [Generating Multi-Categorical Samples with Generative Adversa
 
 ## Pre-requisites
 
-The project was developed using python 2.7.12 with the following packages:
+The project was developed using python 3.6.7 with the following packages:
 
-- numpy==1.14.5
-- scikit-learn==0.19.1
-- scipy==1.1.0
-- torch==0.4.0
+- future==0.17.1
+- numpy==1.16.0
+- scikit-learn==0.20.2
+- scipy==1.2.0
+- torch==1.0.0
 
 Installation with pip:
 
@@ -30,4 +31,5 @@ pip install -r requirements.txt
 
 ## Changelog
 
+- 2019-01-28: changed to Python 3 as suggested (and still compatible with 2.7 ... I hope).
 - 2018-07-25: now we use WGAN-GP for ARAE following the author updates.
