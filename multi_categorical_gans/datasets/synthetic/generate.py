@@ -1,3 +1,4 @@
+from __future__ import division
 from __future__ import print_function
 
 import argparse
@@ -53,7 +54,7 @@ def print_matrix_stats(matrix, num_samples, num_features):
     print("Mean ones per column:", num_ones_per_column.mean())
     print("Total ones:", num_ones)
     print("Total positions:", num_positions)
-    print("Total ratio of ones:", num_ones / float(num_positions))
+    print("Total ratio of ones:", num_ones / num_positions)
     print("Empty rows:", np.sum(num_ones_per_row == 0))
     print("Full rows:", np.sum(num_ones_per_row == num_features))
     print("Empty columns:", np.sum(num_ones_per_column == 0))

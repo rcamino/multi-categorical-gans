@@ -1,3 +1,5 @@
+from __future__ import division
+
 import numpy as np
 
 
@@ -29,7 +31,7 @@ class DatasetIterator(object):
         self.batch_size = batch_size
 
         self.batch_index = 0
-        self.num_batches = int(np.ceil(len(features) / float(batch_size)))
+        self.num_batches = int(np.ceil(len(features) / batch_size))
 
     def __iter__(self):
         return self

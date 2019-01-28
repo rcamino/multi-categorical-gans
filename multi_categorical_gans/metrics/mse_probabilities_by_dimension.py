@@ -1,3 +1,4 @@
+from __future__ import division
 from __future__ import print_function
 
 import argparse
@@ -10,7 +11,7 @@ from sklearn.metrics.regression import mean_squared_error
 
 
 def probability(data):
-    return data.sum() / float(data.shape[0])
+    return data.sum() / data.shape[0]
 
 
 def probabilities_by_dimension(data):
