@@ -30,7 +30,6 @@ python multi_categorical_gans/methods/arae/trainer.py \
     --num_autoencoder_steps=1 \
     --num_discriminator_steps=1 \
     --num_generator_steps=1 \
-    --discriminator_clamp=0.01 \
     --autoencoder_noise_radius=0 \
     --seed=123 \
     data/synthetic/mix_small/synthetic-train.features.npz \
@@ -88,7 +87,6 @@ python multi_categorical_gans/methods/arae/trainer.py \
     --num_autoencoder_steps=1 \
     --num_discriminator_steps=1 \
     --num_generator_steps=1 \
-    --discriminator_clamp=0.01 \
     --autoencoder_noise_radius=0 \
     --seed=123 \
     --temperature=0.666 \
