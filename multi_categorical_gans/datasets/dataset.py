@@ -1,5 +1,7 @@
 from __future__ import division
 
+from future.utils import implements_iterator
+
 import numpy as np
 
 
@@ -23,6 +25,7 @@ class Dataset(object):
         return DatasetIterator(self.features, indices, batch_size)
 
 
+@implements_iterator
 class DatasetIterator(object):
 
     def __init__(self, features, indices, batch_size):
@@ -36,7 +39,7 @@ class DatasetIterator(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         if self.batch_index >= self.num_batches:
             raise StopIteration
         else:
