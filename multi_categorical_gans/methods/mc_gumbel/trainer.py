@@ -81,7 +81,7 @@ def train(generator,
                 optim_disc.zero_grad()
 
                 # first train the discriminator only with real data
-                real_features = Variable(torch.from_numpy(batch))
+                real_features = Variable(torch.from_numpy(batch).type(torch.FloatTensor))
                 real_features = to_cuda_if_available(real_features)
                 real_pred = discriminator(real_features)
                 real_loss = criterion(real_pred, smooth_label_ones)
@@ -139,7 +139,7 @@ def train(generator,
         for batch in val_data.batch_iterator(batch_size):
             # real data discriminator accuracy
             with torch.no_grad():
-                real_features = Variable(torch.from_numpy(batch))
+                real_features = Variable(torch.from_numpy(batch).type(torch.FloatTensor))
                 real_features = to_cuda_if_available(real_features)
                 real_pred = discriminator(real_features)
             real_pred = to_cpu_if_available(real_pred)
