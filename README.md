@@ -1,3 +1,7 @@
+# IMPORTANT UPDATE!
+
+Please consider checking the [code](https://github.com/rcamino/imputation-dgm) for my new work [Improving Missing Value Imputation with Deep Generative Models](https://arxiv.org/abs/1902.10666).
+
 # Multi-Categorical GANs
 
 Code for the paper [Generating Multi-Categorical Samples with Generative Adversarial Networks](https://arxiv.org/abs/1807.01202)
