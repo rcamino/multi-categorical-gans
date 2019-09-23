@@ -1,13 +1,14 @@
 import numpy as np
 
-from scipy.sparse import load_npz, save_npz
+from scipy.sparse import load_npz, save_npz, csr_matrix
 
 
 def load_dense(features_path, transform=True):
     features = np.load(features_path)
     if transform:
-        features = features.astype(np.float32)
-    return features
+        features = csr_matrix((features['data'], features['indices'], features['indptr']),
+                              shape=features['shape'])
+        return features.A
 
 
 def load_sparse(features_path, transform=True):
